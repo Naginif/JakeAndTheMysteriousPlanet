@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
+  - groundLayer
   - 
   - 
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2329456479
     locked: 0
