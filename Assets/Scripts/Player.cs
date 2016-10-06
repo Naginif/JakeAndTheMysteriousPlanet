@@ -17,14 +17,13 @@ public class Player : MonoBehaviour {
     void Start ()
     {
 
-        //animator.SetBool("isAlive", true);
+       animator.SetBool("isAlive", true);
 
         for (int x = -9; x <= 9; x += 1)
         {
             Instantiate(Resources.Load("GroundMid"),
                         new Vector2(x, -4), 
                         Quaternion.identity);
-
         }
 	}
 	
@@ -39,7 +38,7 @@ public class Player : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))        
             Jump();
 
-        //animator.SetBool("isGrounded", IsGrounded());
+        animator.SetBool("isGrounded", IsGrounded());
 	}
 
     void Jump()
