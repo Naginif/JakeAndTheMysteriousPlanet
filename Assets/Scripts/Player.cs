@@ -27,19 +27,27 @@ public class Player : MonoBehaviour {
         }
 	}
 	
-    void FixedUpdate()
-    {
-        if (rb.velocity.x < runningSpeed)
-            rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
-    }
+   
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))        
-            Jump();
+        if (GameManager.instance.currentGameState == GameState.inGame)
+        {
+            if (Input.GetMouseButtonDown(0))
+                Jump();
+        }
 
         animator.SetBool("isGrounded", IsGrounded());
 	}
+
+    void FixedUpdate()
+    {
+        if (GameManager.instance.currentGameState == GameState.inGame)
+        {
+            if (rb.velocity.x < runningSpeed)
+                rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
+        }
+    }
 
     void Jump()
     {
