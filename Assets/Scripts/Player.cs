@@ -19,10 +19,10 @@ public class Player : MonoBehaviour {
 
        animator.SetBool("isAlive", true);
 
-        for (int x = -9; x <= 9; x += 1)
+        for (int x = -9; x <= 4; x += 1)
         {
             Instantiate(Resources.Load("GroundMid"),
-                        new Vector2(x, -4), 
+                        new Vector2(x, -2), 
                         Quaternion.identity);
         }
 	}
@@ -63,4 +63,5 @@ public class Player : MonoBehaviour {
         else
             return false;
     }
+
 }

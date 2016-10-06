@@ -5,7 +5,7 @@ public enum GameState { menu, inGame, gameOver }
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
-    public GameState currentGameState = GameState.menu;
+    public GameState currentGameState = GameState.inGame;
 	// Use this for initialization
 	void Start ()
     {
