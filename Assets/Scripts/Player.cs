@@ -2,22 +2,21 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-    private Rigidbody2D rb;
+    public static Player instance;
 
     public float jumpForce = 6f;
     public float runningSpeed = 1.5f;
     public LayerMask groundLayer;
     public Animator animator;
+
+    private Rigidbody2D rb;
+    private Vector3 startingPosition;
+
     // Use this for initialization
-
-    void Awake()
+    public void StartGame ()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    void Start ()
-    {
-
-       animator.SetBool("isAlive", true);
+        animator.SetBool("isAlive", true);
+        startingPosition = this.transform.position;
 
         for (int x = -9; x <= 4; x += 1)
         {
@@ -26,10 +25,22 @@ public class Player : MonoBehaviour {
                         Quaternion.identity);
         }
 	}
-	
-   
-	// Update is called once per frame
-	void Update ()
+
+    public void Kill()
+    {
+        GameManager.instance.GameOver();
+        animator.SetBool("isAlive", false);
+    }
+
+    void Awake()
+    {
+        instance = this;
+        rb = GetComponent<Rigidbody2D>();
+        startingPosition = this.transform.position;
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if (GameManager.instance.currentGameState == GameState.inGame)
         {
@@ -63,5 +74,4 @@ public class Player : MonoBehaviour {
         else
             return false;
     }
-
 }

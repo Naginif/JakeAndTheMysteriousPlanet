@@ -5,7 +5,7 @@ public enum GameState { menu, inGame, gameOver }
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
-    public GameState currentGameState = GameState.inGame;
+    public GameState currentGameState = GameState.menu;
 	// Use this for initialization
 	void Start ()
     {
@@ -17,13 +17,11 @@ public class GameManager : MonoBehaviour {
         instance = this;
     }
 	// Update is called once per frame
-	void Update () {
-	    
-	}
 
     public void StartGame()
     {
         SetGameState(GameState.inGame);
+        Player.instance.StartGame();
     }
 
     public void  GameOver()
