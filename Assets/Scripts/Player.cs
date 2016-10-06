@@ -17,13 +17,6 @@ public class Player : MonoBehaviour {
     {
         animator.SetBool("isAlive", true);
         startingPosition = this.transform.position;
-
-        for (int x = -9; x <= 4; x += 1)
-        {
-            Instantiate(Resources.Load("GroundMid"),
-                        new Vector2(x, -2), 
-                        Quaternion.identity);
-        }
 	}
 
     public void Kill()
@@ -69,7 +62,7 @@ public class Player : MonoBehaviour {
     
     bool IsGrounded()
     {
-        if (Physics2D.Raycast(this.transform.position, Vector2.down, 1, groundLayer.value))
+        if (Physics2D.Raycast(this.transform.position, Vector2.down, .2f, groundLayer.value))
             return true;
         else
             return false;

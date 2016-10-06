@@ -51,6 +51,6 @@ public class GameManager : MonoBehaviour {
 
         }
 
-
+        currentGameState = newGameState;
     }
 }
