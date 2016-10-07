@@ -32,9 +32,12 @@ public class LevelGenerator : MonoBehaviour {
         pieces.Add(piece);
     }
 
-    public void RemovePiece()
+    public void RemoveOldestPiece()
     {
+        LevelPiece oldestPiece = pieces[0];
 
+        pieces.Remove(oldestPiece);
+        Destroy(oldestPiece.gameObject);
     }
 
     public void RemoveAllPieces()
