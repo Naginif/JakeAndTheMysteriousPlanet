@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class LevelGenerator : MonoBehaviour {
     public static LevelGenerator instance;
     public List<LevelPiece> levelPrefabs = new List<LevelPiece>();
-    public LevelPiece Element0;
     public List<LevelPiece> pieces = new List<LevelPiece>();
     public Transform levelStartPoint;
 
@@ -47,7 +46,6 @@ public class LevelGenerator : MonoBehaviour {
  
     public void GenerateInitialPieces()
     {
-        levelPrefabs.Add(Element0);
         for(int i = 0; i < 2; i++)
             AddPiece();
         Debug.Log("levelPrefab count is: " + levelPrefabs.Count);

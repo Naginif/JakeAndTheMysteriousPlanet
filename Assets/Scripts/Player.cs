@@ -16,20 +16,28 @@ public class Player : MonoBehaviour {
     public void StartGame ()
     {
         animator.SetBool("isAlive", true);
-        startingPosition = this.transform.position;
+        startingPosition = new Vector3(-5.73f, -1.4f, 0);
 	}
 
     public void Kill()
     {
         GameManager.instance.GameOver();
         animator.SetBool("isAlive", false);
+
+        if (PlayerPrefs.GetFloat("highscore", 0) < this.GetDistance())
+            PlayerPrefs.SetFloat("highscore", this.GetDistance());
     }
 
+    public float GetDistance()
+    {
+        float travelDistance = Vector2.Distance(new Vector2(startingPosition.x, 0), new Vector2(this.transform.position.x, 0));
+        return travelDistance;
+    }
     void Awake()
     {
         instance = this;
         rb = GetComponent<Rigidbody2D>();
-        startingPosition = this.transform.position;
+       // startingPosition = this.transform.position;
     }
 
     // Update is called once per frame
