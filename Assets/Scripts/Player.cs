@@ -13,8 +13,7 @@ public class Player : MonoBehaviour {
     private int _nextSpeedUp = 15;
     private Rigidbody2D rb;
     private Vector3 startingPosition;
-
-    // Use this for initialization
+    
     public void StartGame ()
     {
         animator.SetBool("isAlive", true);
@@ -39,10 +38,8 @@ public class Player : MonoBehaviour {
     {
         instance = this;
         rb = GetComponent<Rigidbody2D>();
-       // startingPosition = this.transform.position;
     }
-
-    // Update is called once per frame
+    
     void Update ()
     {
         if (GameManager.instance.currentGameState == GameState.inGame)
@@ -52,7 +49,6 @@ public class Player : MonoBehaviour {
             if (Input.GetMouseButtonDown(1))
                 SuperJump();
         }
-
 
         animator.SetBool("isGrounded", IsGrounded());
 	}
@@ -69,9 +65,8 @@ public class Player : MonoBehaviour {
 
             if ((int)GetDistance() == _nextSpeedUp)
             {
-                runningSpeed += .5f;
+                runningSpeed += .25f;
                 _nextSpeedUp += 15;
-                Debug.Log("Running Speed = " + runningSpeed);
             }
         }
     }
@@ -87,12 +82,6 @@ public class Player : MonoBehaviour {
         if (IsGrounded())
             rb.AddForce(Vector2.up * jumpForce * 1.5f, ForceMode2D.Impulse);
     }
-
-    /*void RunFaster()
-    {
-        if (GetDistance() % 15 == 0)
-            runningSpeed += 1f;
-    }*/
     
     bool IsGrounded()
     {

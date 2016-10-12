@@ -56,12 +56,11 @@ public class LevelGenerator : MonoBehaviour {
     {
         instance = this;
     }
-    // Use this for initialization
+
     void Start () {
         GenerateInitialPieces();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}

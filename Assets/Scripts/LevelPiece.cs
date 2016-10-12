@@ -18,9 +18,4 @@ public class LevelPiece : MonoBehaviour {
             Instantiate(Resources.Load("Coin"), new Vector2(xPosition, yPosition), Quaternion.identity);
         }
     }
-
-    public void Despawn()
-    {
-
-    }
 }
