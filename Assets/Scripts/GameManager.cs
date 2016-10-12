@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
 
     public void Level2()
     {
+        Debug.Log("Go to level 2");
         SceneManager.LoadScene("Level2");
     }
 

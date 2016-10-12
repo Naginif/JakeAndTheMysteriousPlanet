@@ -5,11 +5,12 @@ public class Player : MonoBehaviour {
     public static Player instance;
 
     public float jumpForce = 6f;
-    public float runningSpeed = 1.5f;
+    public float runningSpeed = 2f;
     public LayerMask groundLayer;
     public LayerMask BoxLayer;
     public Animator animator;
 
+    private int _nextSpeedUp = 15;
     private Rigidbody2D rb;
     private Vector3 startingPosition;
 
@@ -65,6 +66,13 @@ public class Player : MonoBehaviour {
                 if (rb.velocity.x < runningSpeed)
                     rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
             }
+
+            if ((int)GetDistance() == _nextSpeedUp)
+            {
+                runningSpeed += .5f;
+                _nextSpeedUp += 15;
+                Debug.Log("Running Speed = " + runningSpeed);
+            }
         }
     }
 
@@ -80,6 +88,11 @@ public class Player : MonoBehaviour {
             rb.AddForce(Vector2.up * jumpForce * 1.5f, ForceMode2D.Impulse);
     }
 
+    /*void RunFaster()
+    {
+        if (GetDistance() % 15 == 0)
+            runningSpeed += 1f;
+    }*/
     
     bool IsGrounded()
     {

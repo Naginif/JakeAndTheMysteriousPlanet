@@ -29,8 +29,6 @@ public class LevelGenerator : MonoBehaviour {
         pieces.Add(piece);
 
         piece.SpawnCoins(piece.transform.position.x);
-
-        Debug.Log("Piece position = " + piece.transform.position.x);
     }
 
     public void RemoveOldestPiece()

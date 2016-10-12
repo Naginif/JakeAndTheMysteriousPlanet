@@ -11,7 +11,6 @@ public class LevelPiece : MonoBehaviour {
         int numberOfCoins = Random.Range(1, 7);
         float xPosition = x;
         float yPosition;
-        Debug.Log("xPosition = " + xPosition);
         for (int i = 0; i < numberOfCoins; i++)
         {
             xPosition += 4;
