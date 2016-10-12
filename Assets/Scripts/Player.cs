@@ -47,7 +47,10 @@ public class Player : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
                 Jump();
+            if (Input.GetMouseButtonDown(1))
+                SuperJump();
         }
+
 
         animator.SetBool("isGrounded", IsGrounded());
 	}
@@ -65,6 +68,12 @@ public class Player : MonoBehaviour {
     {
         if(IsGrounded())
              rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    void SuperJump()
+    {
+        if (IsGrounded())
+            rb.AddForce(Vector2.up * jumpForce * 1.5f, ForceMode2D.Impulse);
     }
 
     

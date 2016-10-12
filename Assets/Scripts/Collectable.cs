@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class Collectable : MonoBehaviour {
-
-    bool isCollected = false;
+    
 
     void Show()
     {
@@ -19,7 +18,6 @@ public class Collectable : MonoBehaviour {
 
     void Collect()
     {
-        isCollected = true;
         Hide();
         GameManager.instance.CollectedCoin();
     }

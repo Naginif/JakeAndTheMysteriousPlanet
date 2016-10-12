@@ -13,13 +13,11 @@ public class LevelGenerator : MonoBehaviour {
         int randomIndex = Random.Range(0, levelPrefabs.Count);
         LevelPiece piece = (LevelPiece)Instantiate(levelPrefabs[randomIndex]);
         piece.transform.SetParent(this.transform, false);
-
         Vector3 spawnPosition = Vector3.zero;
 
         if (pieces.Count == 0)
         {
             spawnPosition = levelStartPoint.position;
-            Debug.Log("Count = 0!");
         }
         else
         {
@@ -27,8 +25,11 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         piece.transform.position = spawnPosition;
-        Debug.Log("spawnposition = " + spawnPosition.ToString());
         pieces.Add(piece);
+
+        piece.SpawnCoins(piece.transform.position.x);
+
+        Debug.Log("Piece position = " + piece.transform.position.x);
     }
 
     public void RemoveOldestPiece()
@@ -41,16 +42,18 @@ public class LevelGenerator : MonoBehaviour {
 
     public void RemoveAllPieces()
     {
+        foreach (LevelPiece piece in pieces)
+            Destroy(piece.gameObject);
 
+        //pieces.RemoveAll();
     }
  
     public void GenerateInitialPieces()
     {
         for(int i = 0; i < 2; i++)
             AddPiece();
-        Debug.Log("levelPrefab count is: " + levelPrefabs.Count);
     }
-
+        
     void Awake()
     {
         instance = this;

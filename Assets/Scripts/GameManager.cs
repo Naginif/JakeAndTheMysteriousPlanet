@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public enum GameState { menu, inGame, gameOver }
 
@@ -11,10 +12,6 @@ public class GameManager : MonoBehaviour {
     public Canvas gameOverCanvas;
     public int collectedCoins = 0;
 	// Use this for initialization
-	void Start ()
-    {
-	}
-	
     void Awake()
     {
         instance = this;
@@ -27,7 +24,7 @@ public class GameManager : MonoBehaviour {
         Player.instance.StartGame();
     }
 
-    public void  GameOver()
+    public void GameOver()
     {
         SetGameState(GameState.gameOver);
     }
@@ -40,6 +37,11 @@ public class GameManager : MonoBehaviour {
     public void CollectedCoin()
     {
         collectedCoins++;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void SetGameState(GameState newGameState)
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour {
         else if (newGameState == GameState.gameOver)
         {
             menuCanvas.enabled = false;
-            inGameCanvas.enabled = false;
+            inGameCanvas.enabled = true;
             gameOverCanvas.enabled = true;
         }
 
