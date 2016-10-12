@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     public float jumpForce = 6f;
     public float runningSpeed = 1.5f;
     public LayerMask groundLayer;
+    public LayerMask BoxLayer;
     public Animator animator;
 
     private Rigidbody2D rb;
@@ -59,8 +60,11 @@ public class Player : MonoBehaviour {
     {
         if (GameManager.instance.currentGameState == GameState.inGame)
         {
-            if (rb.velocity.x < runningSpeed)
-                rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
+            if (!IsObstacle())
+            {
+                if (rb.velocity.x < runningSpeed)
+                    rb.velocity = new Vector2(runningSpeed, rb.velocity.y);
+            }
         }
     }
 
@@ -80,6 +84,16 @@ public class Player : MonoBehaviour {
     bool IsGrounded()
     {
         if (Physics2D.Raycast(this.transform.position, Vector2.down, .2f, groundLayer.value))
+            return true;
+        else if (Physics2D.Raycast(this.transform.position, Vector2.down, .2f, BoxLayer.value))
+            return true;
+        else
+            return false;
+    }
+
+    bool IsObstacle()
+    {
+        if (Physics2D.Raycast(this.transform.position, Vector2.right, 1f, BoxLayer.value))
             return true;
         else
             return false;

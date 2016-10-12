@@ -123,6 +123,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  BoxLayer:
+    serializedVersion: 2
+    m_Bits: 512
   animator: {fileID: 95000013423908936}
 --- !u!212 &212000012917371948
 SpriteRenderer:

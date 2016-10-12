@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public enum GameState { menu, inGame, gameOver }
+public enum GameState { menu, inGame, gameOver, levelComplete }
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public Canvas menuCanvas;
     public Canvas inGameCanvas;
     public Canvas gameOverCanvas;
+    public Canvas levelCompleteCanvas;
     public int collectedCoins = 0;
 	// Use this for initialization
     void Awake()
@@ -34,6 +35,11 @@ public class GameManager : MonoBehaviour {
         SetGameState(GameState.menu);
     }
 
+    public void LevelComplete()
+    {
+        SetGameState(GameState.levelComplete);
+    }
+
     public void CollectedCoin()
     {
         collectedCoins++;
@@ -44,6 +50,11 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void Level2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
     void SetGameState(GameState newGameState)
     {
         if (newGameState == GameState.menu)
@@ -51,6 +62,7 @@ public class GameManager : MonoBehaviour {
             menuCanvas.enabled = true;
             inGameCanvas.enabled = false;
             gameOverCanvas.enabled = false;
+            levelCompleteCanvas.enabled = false;
         }
 
         else if (newGameState == GameState.inGame)
@@ -58,13 +70,23 @@ public class GameManager : MonoBehaviour {
             menuCanvas.enabled = false;
             inGameCanvas.enabled = true;
             gameOverCanvas.enabled = false;
+            levelCompleteCanvas.enabled = false;
         }
 
         else if (newGameState == GameState.gameOver)
         {
             menuCanvas.enabled = false;
-            inGameCanvas.enabled = true;
+            inGameCanvas.enabled = false;
             gameOverCanvas.enabled = true;
+            levelCompleteCanvas.enabled = false;
+        }
+
+        else if (newGameState == GameState.levelComplete)
+        {
+            menuCanvas.enabled = false;
+            inGameCanvas.enabled = false;
+            gameOverCanvas.enabled = false;
+            levelCompleteCanvas.enabled = true;
         }
 
         currentGameState = newGameState;

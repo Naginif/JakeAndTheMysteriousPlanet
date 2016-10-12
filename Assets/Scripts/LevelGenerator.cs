@@ -6,6 +6,7 @@ public class LevelGenerator : MonoBehaviour {
     public static LevelGenerator instance;
     public List<LevelPiece> levelPrefabs = new List<LevelPiece>();
     public List<LevelPiece> pieces = new List<LevelPiece>();
+    public LevelPiece finalPiece = new LevelPiece();
     public Transform levelStartPoint;
 
     public void AddPiece()
@@ -40,14 +41,13 @@ public class LevelGenerator : MonoBehaviour {
         Destroy(oldestPiece.gameObject);
     }
 
-    public void RemoveAllPieces()
+    public void AddFinalPiece()
     {
-        foreach (LevelPiece piece in pieces)
-            Destroy(piece.gameObject);
-
-        //pieces.RemoveAll();
+        LevelPiece final = Instantiate(finalPiece);
+        Vector3 spawnPosition = pieces[pieces.Count - 1].exitPoint.position;
+        final.transform.position = spawnPosition;
     }
- 
+
     public void GenerateInitialPieces()
     {
         for(int i = 0; i < 2; i++)
